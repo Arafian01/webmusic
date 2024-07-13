@@ -1,0 +1,119 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Makes You Beautiful Lyrics</title>
+    <style>
+        /* styles.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.lyrics-container {
+    text-align: center;
+    padding: 20px;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.lyrics-container.fadeOut {
+    animation: fadeOut 1s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <button onclick="playAudio()">Play Audio</button>
+<audio id="myAudio">
+  <source src="what-makes-you-beautiful.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+           
+    <div class="lyrics-container">
+        <div id="lyrics"></div>
+    </div>
+    <script >
+        function playAudio() {
+            const audio = document.getElementById('myAudio');
+            audio.play();
+            displayLyric(0);
+        }
+
+        // script.js
+const lyrics = [
+    { text: "You're insecure", start: 11.0, end: 2.5 },
+    { text: "Don't know what for", start: 2, end: 15.5 },
+    { text: "You're turning heads when you walk through the door", start: 11.5, end: 14.5 },
+    { text: "Don't need make up", start: 11.5, end: 14.5 },
+    { text: "To cover up", start: 11.5, end: 14.5 },
+    { text: "Being the way that you are is enough", start: 11.5, end: 14.5 },
+    { text: "Everyone else in the room can see it", start: 11.5, end: 14.5 },
+    { text: "Everyone else but you", start: 11.5, end: 14.5 },
+    { text: "Baby you light up my world like nobody else", start: 11.5, end: 14.5 },
+    { text: "The way that you flip your hair gets me overwhelmed", start: 11.5, end: 14.5 },
+    { text: "But when you smile at the ground it aint hard to tell", start: 11.5, end: 14.5 },
+    { text: "You don't know", start: 11.5, end: 14.5 },
+    { text: "Oh Oh", start: 11.5, end: 14.5 },
+    { text: "You don't know you're beautiful", start: 11.5, end: 14.5 },
+    { text: "If only you saw what I can see", start: 11.5, end: 14.5 },
+    { text: "You'll understand why I want you so desperately", start: 11.5, end: 14.5 },
+    { text: "Right now I'm looking at you and I can't believe", start: 11.5, end: 14.5 },
+    { text: "You don't know", start: 11.5, end: 14.5 },
+    { text: "Oh oh", start: 11.5, end: 14.5 },
+    { text: "You don't know you're beautiful", start: 11.5, end: 14.5 },
+    { text: "Oh oh", start: 11.5, end: 14.5 },
+    { text: "But that's what makes you beautiful", start: 11.5, end: 14.5 },
+
+    // Tambahkan bagian lirik lainnya dengan waktu yang sesuai
+];
+
+const lyricsContainer = document.getElementById('lyrics');
+
+function displayLyric(index) {
+    if (index >= lyrics.length) return;
+    const { text, start, end } = lyrics[index];
+    setTimeout(() => {
+        lyricsContainer.textContent = text;
+        lyricsContainer.classList.remove('fadeOut');
+        lyricsContainer.classList.add('fadeIn');
+        setTimeout(() => {
+            lyricsContainer.classList.remove('fadeIn');
+            lyricsContainer.classList.add('fadeOut');
+            displayLyric(index + 1);
+        }, (end - start) * 1000);
+    }, start * 1000);
+}
+
+
+    </script>
+</body>
+</html>
